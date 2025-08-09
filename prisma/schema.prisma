@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Provider {
+  gemini
+  deepseek
+  chatgpt
+  claude
+  llama
+}
+
+model User {
+  id         String  @id @unique
+  provider   String
+  providerId String
+  email      String
+  name       String?
+  image      String?
+  chats      Chat[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@unique([provider, providerId])
+}
+
+model Chat {
+  id         String    @id @default(uuid())
+  name       String
+  aiProvider Provider
+  author     User      @relation(fields: [authorId], references: [id])
+  authorId   String
+  requests   Request[] // 👈 связь с запросами
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model Request {
+  id       String @id @default(cuid())
+  prompt   String
+  response String
+  chat     Chat   @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  chatId   String
+
+  createdAt DateTime @default(now())
+}
