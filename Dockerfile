@@ -1,18 +1,17 @@
-FROM node:21-alpine
+FROM node:20-alpine
 
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 
 COPY prisma ./prisma/
 RUN npx prisma generate
 
 COPY . .
 
-RUN npm install -g tsc-alias
-RUN npm install typescript -D
-RUN npx tsc && tsc-alias -p tsconfig.json
+RUN npm install typescript tsconfig-paths tsc-alias -D \
+    && npm run build
 
 EXPOSE 8000
 
