@@ -10,8 +10,9 @@ RUN npx prisma generate
 
 COPY . .
 
-RUN npm install typescript tsconfig-paths tsc-alias -D \
-    && npm run build
+RUN npm install -g tsc-alias
+RUN npm install typescript -D
+RUN npx tsc && tsc-alias -p tsconfig.json
 
 EXPOSE 8000
 
