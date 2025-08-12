@@ -19,7 +19,7 @@
     "openai": "^5.10.2",
     "socket.io": "^4.8.1",
     "tsconfig-paths": "^4.2.0",
-    "zod": "^4.0.5"
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
