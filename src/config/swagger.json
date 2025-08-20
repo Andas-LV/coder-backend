@@ -317,7 +317,8 @@
             "nullable": true
           },
           "provider": {
-            "type": "string"
+            "type": "string",
+            "enum": ["github", "google"]
           },
           "providerId": {
             "type": "string"

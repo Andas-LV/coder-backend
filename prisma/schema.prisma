@@ -7,17 +7,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum AuthProvider {
+  github
+  google
+}
+
 enum Provider {
   gemini
   deepseek
-  chatgpt
-  claude
-  llama
 }
 
 model User {
-  id         String  @id @unique
-  provider   String
+  id         String       @id @unique
+  provider   AuthProvider
   providerId String
   email      String
   name       String?
