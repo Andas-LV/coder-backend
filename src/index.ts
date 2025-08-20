@@ -7,6 +7,8 @@ import { usersRouter } from '@/routes/usersRoutes';
 import { accountRoutes } from '@/routes/accountRoutes';
 import { aiRoutes } from '@/routes/aiRoutes';
 import { chatsRoutes } from '@/routes/chatsRoutes';
+import swaggerDocument from "@/config/swagger.json";
+import swaggerUi from 'swagger-ui-express';
 
 const app = express();
 const httpServer = createServer(app);
@@ -22,6 +24,8 @@ app.use(express.json());
 app.get("/", (req: Request, res: Response) => {
     res.send("INITIAL ENDPOINT OF EXPRESS TS SERVER.");
 });
+
+app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/users', usersRouter);
 app.use('/account', accountRoutes)

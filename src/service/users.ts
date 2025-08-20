@@ -1,7 +1,6 @@
-import { Prisma } from '@prisma/client';
 import { TUser } from '@/types/User';
 import { prisma } from '@/lib/prisma';
-
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 export async function saveUser(data: TUser): Promise<TUser> {
 	try {
@@ -29,7 +28,7 @@ export async function saveUser(data: TUser): Promise<TUser> {
 		});
 	} catch (error) {
 		if (
-			error instanceof Prisma.PrismaClientKnownRequestError &&
+			error instanceof PrismaClientKnownRequestError &&
 			error.code === 'P2002'
 		) {
 			const existingUser = await prisma.user.findFirst({
