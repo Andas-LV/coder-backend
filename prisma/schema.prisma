@@ -49,3 +49,18 @@ model Request {
 
   createdAt DateTime @default(now())
 }
+
+enum QrLoginStatus {
+  PENDING
+  SCANNED
+  EXPIRED
+}
+
+model QrLoginToken {
+  id        String        @id @default(cuid())
+  token     String        @unique
+  status    QrLoginStatus @default(PENDING)
+  userId    String?
+  expiresAt DateTime
+  createdAt DateTime      @default(now())
+}

@@ -7,9 +7,14 @@ import { usersRouter } from '@/routes/usersRoutes';
 import { accountRoutes } from '@/routes/accountRoutes';
 import { aiRoutes } from '@/routes/aiRoutes';
 import { chatsRoutes } from '@/routes/chatsRoutes';
+import { qrLoginRouter } from '@/routes/qrLoginRoutes';
+import { initWSS } from './ws';
 
 const app = express();
 const httpServer = createServer(app);
+
+initWSS(httpServer);
+
 const methodTypes = ['GET', 'POST', 'PUT', 'PATCH','DELETE']
 
 app.use(cors({
@@ -27,6 +32,7 @@ app.use('/users', usersRouter);
 app.use('/account', accountRoutes)
 app.use('/ai', aiRoutes)
 app.use('/chats', chatsRoutes)
+app.use('/qr-login', qrLoginRouter)
 
 httpServer.listen(config.port, () => {
     console.log(`Server running on port ${config.port}, open ${config.localhost}`);

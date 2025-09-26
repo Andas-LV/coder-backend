@@ -1,5 +1,8 @@
 -- CreateEnum
-CREATE TYPE "Provider" AS ENUM ('gemini', 'deepseek', 'chatgpt', 'claude', 'llama');
+CREATE TYPE "Provider" AS ENUM ('gemini', 'deepseek', 'llama');
+
+-- CreateEnum
+CREATE TYPE "QrLoginStatus" AS ENUM ('PENDING', 'SCANNED', 'EXPIRED');
 
 -- CreateTable
 CREATE TABLE "User" (
@@ -38,11 +41,26 @@ CREATE TABLE "Request" (
     CONSTRAINT "Request_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "QrLoginToken" (
+    "id" TEXT NOT NULL,
+    "token" TEXT NOT NULL,
+    "status" "QrLoginStatus" NOT NULL DEFAULT 'PENDING',
+    "userId" TEXT,
+    "expiresAt" TIMESTAMP(3) NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "QrLoginToken_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_id_key" ON "User"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_provider_providerId_key" ON "User"("provider", "providerId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "QrLoginToken_token_key" ON "QrLoginToken"("token");
 
 -- AddForeignKey
 ALTER TABLE "Chat" ADD CONSTRAINT "Chat_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

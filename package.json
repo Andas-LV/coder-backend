@@ -18,8 +18,9 @@
     "groq-sdk": "^0.32.0",
     "jsonwebtoken": "^9.0.2",
     "openai": "^5.10.2",
-    "socket.io": "^4.8.1",
+    "qrcode": "^1.5.4",
     "tsconfig-paths": "^4.2.0",
+    "ws": "^8.18.3",
     "zod": "^3.25.76"
   },
   "devDependencies": {
@@ -27,6 +28,8 @@
     "@types/express": "^5.0.3",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.0.15",
+    "@types/qrcode": "^1.5.5",
+    "@types/ws": "^8.18.1",
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
     "nodemon": "^3.1.10",
