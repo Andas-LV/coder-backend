@@ -1,6 +1,5 @@
-import { WebSocketServer } from "ws";
-import { WebSocket } from "ws";
-import { Server } from 'http';
+import WebSocket, { WebSocketServer } from "ws";
+import type { Server } from 'http';
 
 let wss: WebSocketServer;
 const clients = new Map<string, WebSocket>();
