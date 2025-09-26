@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import 'dotenv/config';
 import cors from 'cors';
-import { createServer } from 'http';
+import { createServer } from 'https';
 import config from "@/config";
 import { usersRouter } from '@/routes/usersRoutes';
 import { accountRoutes } from '@/routes/accountRoutes';

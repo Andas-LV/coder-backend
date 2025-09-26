@@ -1,11 +1,10 @@
 import WebSocket, { WebSocketServer } from "ws";
-import type { Server } from 'http';
+import type { Server } from 'https';
 
-let wss: WebSocketServer;
 const clients = new Map<string, WebSocket>();
 
 export const initWSS = (server: Server) => {
-  wss = new WebSocketServer({ server });
+  const wss = new WebSocketServer({ server });
 
   wss.on('connection', (ws: WebSocket) => {
     console.log('Client connected');
