@@ -1,5 +1,5 @@
-
-import WebSocket, { WebSocketServer } from 'ws';
+import { WebSocketServer } from "ws";
+import { WebSocket } from "ws";
 import { Server } from 'http';
 
 let wss: WebSocketServer;
