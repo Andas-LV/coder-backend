@@ -1,9 +1,9 @@
 interface IConfig {
+	origins: string[];
 	groq_api_key: string;
 	deepSeek_api_key: string;
 	deepSeek_api: string;
 	gemini_api_key: string;
-	origins: string;
 	port: string;
 	localhost: string;
 	nextAuthSecret: string;
@@ -11,7 +11,10 @@ interface IConfig {
 }
 
 const config: IConfig = {
-	origins: '*',
+	origins: [
+		process.env.CLIENT_URL!,
+		process.env.LOCAL_CLIENT_URL!,
+	],
 	port: process.env.PORT!,
 	localhost: process.env.LOCALHOST!,
 	nodeEnv: process.env.NODE_ENV!,
