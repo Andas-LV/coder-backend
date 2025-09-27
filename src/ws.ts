@@ -9,7 +9,6 @@ export const initSocketIO = (server: HttpServer) => {
 		cors: {
 			origin: config.origins,
 			methods: ['GET', 'POST'],
-			allowedHeaders: ['Content-Type'],
 			credentials: true,
 		},
 	});
