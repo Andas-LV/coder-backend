@@ -1,19 +1,19 @@
 import express, { Request, Response } from "express";
 import 'dotenv/config';
 import cors from 'cors';
-import { createServer } from 'https';
+import { createServer } from 'http';
 import config from "@/config";
 import { usersRouter } from '@/routes/usersRoutes';
 import { accountRoutes } from '@/routes/accountRoutes';
 import { aiRoutes } from '@/routes/aiRoutes';
 import { chatsRoutes } from '@/routes/chatsRoutes';
 import { qrLoginRouter } from '@/routes/qrLoginRoutes';
-import { initWSS } from './ws';
+import { initSocketIO } from '@/ws';
 
 const app = express();
 const httpServer = createServer(app);
 
-initWSS(httpServer);
+initSocketIO(httpServer)
 
 const methodTypes = ['GET', 'POST', 'PUT', 'PATCH','DELETE']
 

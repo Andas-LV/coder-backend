@@ -19,6 +19,7 @@
     "jsonwebtoken": "^9.0.2",
     "openai": "^5.10.2",
     "qrcode": "^1.5.4",
+    "socket.io": "^4.8.1",
     "tsconfig-paths": "^4.2.0",
     "ws": "^8.18.3",
     "zod": "^3.25.76"
