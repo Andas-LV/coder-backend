@@ -11,7 +11,8 @@ export const initSocketIO = (server: HttpServer) => {
 			methods: ['GET', 'POST'],
 			credentials: true,
 		},
-		transports: ["websocket", "polling"]
+		pingInterval: 25000, // каждые 25s пинг
+		pingTimeout: 60000,
 	});
 
 	io.on('connection', (socket: Socket) => {
