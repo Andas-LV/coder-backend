@@ -6,4 +6,4 @@ export const deepSeekAi = new OpenAI({
 	apiKey: config.deepSeek_api_key,
 });
 
-export const deepSeekModel = "deepseek/deepseek-r1:free";
+export const deepSeekModel = "deepseek-chat";
