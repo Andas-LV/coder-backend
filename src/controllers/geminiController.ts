@@ -21,7 +21,11 @@ export async function geminiReqController(req: Request, res: Response) {
 		await saveAiRequest(chatId, prompt, result.result, Provider.gemini);
 
 		res.status(200).json(result);
-	} catch (error) {
-		res.status(500).json({ error: 'Internal server error' });
+	} catch (error: any) {
+		console.error('Gemini Controller Error:', error);
+		res.status(500).json({
+			error: 'Gemini request failed',
+			details: error.message || 'Unknown error'
+		});
 	}
 }

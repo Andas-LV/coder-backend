@@ -21,8 +21,11 @@ export async function llamaReqController(req: Request, res: Response) {
 		await saveAiRequest(chatId, prompt, result.result, Provider.llama);
 
 		res.status(200).json(result);
-	} catch (error) {
-		console.error(error);
-		res.status(500).json({ error: 'Internal server error' });
+	} catch (error: any) {
+		console.error('Llama Controller Error:', error);
+		res.status(500).json({
+			error: 'Llama request failed',
+			details: error.message || 'Unknown error'
+		});
 	}
 }

@@ -21,8 +21,11 @@ export async function deepSeekReqController(req: Request, res: Response) {
 		await saveAiRequest(chatId, prompt, result.result, Provider.deepseek);
 
 		res.status(200).json(result);
-	} catch (error) {
-		console.error(error);
-		res.status(500).json({ error: 'Internal server error' });
+	} catch (error: any) {
+		console.error('DeepSeek Controller Error:', error);
+		res.status(500).json({
+			error: 'DeepSeek request failed',
+			details: error.message || 'Unknown error'
+		});
 	}
 }
